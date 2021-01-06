@@ -1,0 +1,3 @@
+{
+	"connectionString": "Data Source=DESKTOP-TC60P45\\SQLEXPRESS;Initial Catalog=WEB_DZIENNIK_DB;Integrated Security=False;Pooling=True; Min Pool Size=0; Max Pool Size=500"
+}
