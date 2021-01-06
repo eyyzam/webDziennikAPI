@@ -2,12 +2,13 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.Hosting;
 
 namespace WebDziennikAPI.Config.Extensions
 {
 	public static class ConfigurationBuilderExtension
 	{
-		public static IConfigurationBuilder AddDefaultConfiguration(this IConfigurationBuilder configuration, IHostingEnvironment environment)
+		public static IConfigurationBuilder AddDefaultConfiguration(this IConfigurationBuilder configuration, IWebHostEnvironment environment)
 		{
 			string configurationFileName;
 

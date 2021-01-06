@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
 using WebDziennikAPI.Config.Extensions;
 using WebDziennikAPI.Config.Models;
 
@@ -25,15 +24,11 @@ namespace WebDziennikAPI
 				AutoMapperEnabled = true,
 				UseAPIConfiguration = true,
 				SwaggerEnabled = true,
-				UseSwaggerFullSchemaNames = false,
+				DefaultCorsPolicy = true,
 				LogsEnabled = true
 			});
 
 			services.AddControllers();
-			services.AddSwaggerGen(c =>
-			{
-				c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebDziennikAPI", Version = "v1" });
-			});
 		}
 
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -41,9 +36,9 @@ namespace WebDziennikAPI
 			if (env.IsDevelopment())
 			{
 				app.UseDeveloperExceptionPage();
-				app.UseSwagger();
-				app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebDziennikAPI v1"));
 			}
+
+			app.AddDefaultConfiguration();
 		}
 	}
 }

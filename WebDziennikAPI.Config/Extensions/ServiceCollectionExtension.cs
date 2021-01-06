@@ -4,34 +4,41 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using System;
+using System.Collections.Generic;
+using System.Reflection;
+using AutoMapper;
 using WebDziennikAPI.Config.Configs;
 using WebDziennikAPI.Config.Models;
+using Microsoft.OpenApi.Models;
 
 namespace WebDziennikAPI.Config.Extensions
 {
 	public static class ServiceCollectionExtension
 	{
+		public static bool UsingSwagger { get; private set; }
+		public static bool UsingDefaultCorsPolicy { get; private set; }
+		public static string NameOfCorsPolicy { get; private set; }
+
 		public static IServiceCollection AddDefaultConfiguration<T>(this IServiceCollection services, DefaultConfigurationModel configuration)
 		{
 			if (configuration.AutoMapperEnabled)
 			{
+				var assemblies = new List<Assembly>(AutoMapperExtension.GetAssemblies());
+				assemblies.Insert(0, typeof(T).Assembly);
 
-			}
-
-			if (configuration.LogsEnabled)
-			{
-
-			}
-
-			if (configuration.SwaggerEnabled)
-			{
-
+				services.AddAutoMapper(assemblies);
 			}
 
 			if (configuration.UseAPIConfiguration)
 				services.AddAPIConfiguration();
 
-			if (configuration.UseSwaggerFullSchemaNames)
+			if (configuration.SwaggerEnabled)
+				services.AddSwagger();
+
+			if (configuration.DefaultCorsPolicy)
+				services.AddDefaultCorsPolicy();
+
+			if (configuration.LogsEnabled)
 			{
 
 			}
@@ -41,11 +48,34 @@ namespace WebDziennikAPI.Config.Extensions
 		
 		public static IServiceCollection AddAPIConfiguration(this IServiceCollection services)
 		{
-			var environment = services.BuildServiceProvider().GetRequiredService<IHostingEnvironment>();
+			var environment = services.BuildServiceProvider().GetRequiredService<IWebHostEnvironment>();
 			var configuration = new ConfigurationBuilder().AddDefaultConfiguration(environment).Build();
 
 			services.AddSingleton<IConfiguration>(configuration);
 			services.Configure<BaseConfiguration>(configuration);
+			return services;
+		}
+
+		public static IServiceCollection AddSwagger(this IServiceCollection services)
+		{
+			UsingSwagger = true;
+			
+			services.AddSwaggerGen(c =>
+			{
+				c.SwaggerDoc("WebDziennikAPI", new OpenApiInfo { Title = "WebDziennikAPI", Version = "0.0.1" });
+			});
+			return services;
+		}
+
+		public static IServiceCollection AddDefaultCorsPolicy(this IServiceCollection services, string nameOfPolicy = "DefaultPolicy")
+		{
+			UsingDefaultCorsPolicy = true;
+			NameOfCorsPolicy = nameOfPolicy;
+
+			services.AddCors(obj => obj.AddPolicy(nameOfPolicy, builder =>
+			{
+				builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader().SetPreflightMaxAge(TimeSpan.FromSeconds(2700));
+			}));
 			return services;
 		}
 

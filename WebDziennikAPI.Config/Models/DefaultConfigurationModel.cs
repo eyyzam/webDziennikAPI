@@ -8,7 +8,7 @@
 
 		public bool SwaggerEnabled { get; set; } = false;
 
-		public bool UseSwaggerFullSchemaNames { get; set; } = false;
+		public bool DefaultCorsPolicy { get; set; } = false;
 
 		public bool LogsEnabled { get; set; } = false;
 	}
