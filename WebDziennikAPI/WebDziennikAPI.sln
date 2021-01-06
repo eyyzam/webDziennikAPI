@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebDziennikAPI", "WebDziennikAPI.csproj", "{DADA545D-114F-4ABB-8667-E02FCB5D6A75}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebDziennikAPI", "WebDziennikAPI.csproj", "{DADA545D-114F-4ABB-8667-E02FCB5D6A75}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebDziennikAPI.Core", "..\WebDziennikAPI.Core\WebDziennikAPI.Core.csproj", "{54E61A8E-3521-4C23-8F3C-698102F58080}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebDziennikAPI.Core", "..\WebDziennikAPI.Core\WebDziennikAPI.Core.csproj", "{54E61A8E-3521-4C23-8F3C-698102F58080}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebDziennikAPI.Config", "..\WebDziennikAPI.Config\WebDziennikAPI.Config.csproj", "{4BFD40FE-F479-4551-8A5A-4D00A1252A85}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebDziennikAPI.Config", "..\WebDziennikAPI.Config\WebDziennikAPI.Config.csproj", "{4BFD40FE-F479-4551-8A5A-4D00A1252A85}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

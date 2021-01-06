@@ -1,15 +1,16 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using AutoMapper;
 using WebDziennikAPI.Config.Configs;
+using WebDziennikAPI.Config.Filters;
 using WebDziennikAPI.Config.Models;
-using Microsoft.OpenApi.Models;
 
 namespace WebDziennikAPI.Config.Extensions
 {
@@ -60,9 +61,10 @@ namespace WebDziennikAPI.Config.Extensions
 		{
 			UsingSwagger = true;
 			
-			services.AddSwaggerGen(c =>
+			services.AddSwaggerGen(config =>
 			{
-				c.SwaggerDoc("WebDziennikAPI", new OpenApiInfo { Title = "WebDziennikAPI", Version = "0.0.1" });
+				config.SwaggerDoc("WebDziennikAPI", new OpenApiInfo { Title = "WebDziennikAPI", Version = "0.0.1" });
+				config.DocumentFilter<RemoveSchemasFilter>();
 			});
 			return services;
 		}
