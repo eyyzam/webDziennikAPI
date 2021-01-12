@@ -9,7 +9,10 @@ namespace WebDziennikAPI.Config.Extensions
 			if (ServiceCollectionExtension.UsingSwagger)
 			{
 				app.UseSwagger();
-				app.UseSwaggerUI(config => config.SwaggerEndpoint("/swagger/WebDziennikAPI/swagger.json", "WebDziennikAPI"));
+				app.UseSwaggerUI(config =>
+				{
+					config.SwaggerEndpoint("/swagger/WebDziennikAPI/swagger.json", "WebDziennikAPI");
+				});
 			}
 
 			if (ServiceCollectionExtension.UsingDefaultCorsPolicy)

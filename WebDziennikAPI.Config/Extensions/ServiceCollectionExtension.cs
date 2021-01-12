@@ -63,7 +63,7 @@ namespace WebDziennikAPI.Config.Extensions
 			
 			services.AddSwaggerGen(config =>
 			{
-				config.SwaggerDoc("WebDziennikAPI", new OpenApiInfo { Title = "WebDziennikAPI", Version = "0.0.1" });
+				config.SwaggerDoc("WebDziennikAPI", new OpenApiInfo { Title = "WebDziennikAPI", Version = "v1" });
 				config.DocumentFilter<RemoveSchemasFilter>();
 			});
 			return services;
@@ -81,7 +81,7 @@ namespace WebDziennikAPI.Config.Extensions
 			return services;
 		}
 
-		public static IServiceCollection AddEntityFrameworkCollection<T>(
+		public static IServiceCollection AddEntityFrameworkConnection<T>(
 			this IServiceCollection services, QueryTrackingBehavior queryTrackingBehavior,
 			Action<DbContextOptionsBuilder> dbContextOptions = null) where T : DbContext
 		{

@@ -1,10 +1,13 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using WebDziennikAPI.Config.Extensions;
 using WebDziennikAPI.Config.Models;
+using WebDziennikAPI.Core.Contexts.Auth;
+using WebDziennikAPI.Core.Services.Auth;
 
 namespace WebDziennikAPI
 {
@@ -28,6 +31,9 @@ namespace WebDziennikAPI
 				LogsEnabled = true
 			});
 
+			ServiceRegistration(services);
+			EntityFrameworkDBConnection(services);
+
 			services.AddControllers();
 		}
 
@@ -38,7 +44,24 @@ namespace WebDziennikAPI
 				app.UseDeveloperExceptionPage();
 			}
 
+			app.UseRouting();
+
+			app.UseEndpoints(endpoints =>
+			{
+				endpoints.MapControllers();
+			});
+
 			app.AddDefaultConfiguration();
+		}
+
+		public static void ServiceRegistration(IServiceCollection services)
+		{
+			services.AddScoped<IAuthService, AuthService>();
+		}
+
+		public static void EntityFrameworkDBConnection(IServiceCollection services)
+		{
+			services.AddEntityFrameworkConnection<UsersContext>(QueryTrackingBehavior.NoTracking);
 		}
 	}
 }
