@@ -1,8 +1,6 @@
 {
 	"connectionString": "Data Source=DESKTOP-TC60P45\\SQLEXPRESS;Initial Catalog=WEB_DZIENNIK_DB;Integrated Security=True;UID=DESKTOP-TC60P45\\eazym;PWD=;Pooling=True; Min Pool Size=0; Max Pool Size=500",
 	"Auth": {
-		"ValidAudience": "http://localhost:4200",
-		"ValidIssuer": "https://localhost:44363/",
 		"Secret": "%*_HQn55P%j!Jy^1|2|PqWW90I$"
 	}
 }

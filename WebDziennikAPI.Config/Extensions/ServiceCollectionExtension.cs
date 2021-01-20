@@ -7,6 +7,8 @@ using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Reflection;
 using WebDziennikAPI.Config.Configs;
 using WebDziennikAPI.Config.Filters;
@@ -65,6 +67,7 @@ namespace WebDziennikAPI.Config.Extensions
 			{
 				config.SwaggerDoc("WebDziennikAPI", new OpenApiInfo { Title = "WebDziennikAPI", Version = "v1" });
 				config.DocumentFilter<RemoveSchemasFilter>();
+				config.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
 			});
 			return services;
 		}

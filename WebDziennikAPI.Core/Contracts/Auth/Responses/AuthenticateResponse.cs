@@ -1,6 +1,6 @@
 ﻿namespace WebDziennikAPI.Core.Contracts.Auth.Responses
 {
-	public class LoginResponse
+	public class AuthenticateResponse
 	{
 		public string AuthorizationToken { get; set; }
 	}

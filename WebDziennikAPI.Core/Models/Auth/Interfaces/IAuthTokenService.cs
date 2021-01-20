@@ -4,6 +4,6 @@ namespace WebDziennikAPI.Core.Models.Auth.Interfaces
 {
 	public interface IAuthTokenService
 	{
-		Token NewToken();
+		string GenerateJWTToken(User user);
 	}
 }

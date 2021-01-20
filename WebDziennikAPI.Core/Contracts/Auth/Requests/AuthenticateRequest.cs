@@ -1,6 +1,6 @@
 ﻿namespace WebDziennikAPI.Core.Contracts.Auth.Requests
 {
-	public class LoginRequest
+	public class AuthenticateRequest
 	{
 		public string Username { get; set; }
 

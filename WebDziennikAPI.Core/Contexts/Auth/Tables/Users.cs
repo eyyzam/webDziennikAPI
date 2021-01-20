@@ -3,16 +3,23 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebDziennikAPI.Core.Contexts.Auth.Tables
 {
-	[Table("Users")]
+	[Table("UserAccounts")]
 	public class Users
 	{
 		[Key]
 		[Column("ID")]
-		public int ID { get; set; }
+		public int Id { get; set; }
 
-		[Column("Login")]
+		[StringLength(50)]
+		[Column("Name")]
+		public string Name { get; set; }
+
+		[Column("Surname")]
+		public string Surname { get; set; }
+
+		[Column("Username")]
 		[StringLength(30)]
-		public string Login { get; set; }
+		public string Username { get; set; }
 
 		[Column("Password")]
 		[StringLength(100)]
