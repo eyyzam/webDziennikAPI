@@ -20,9 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Contracts\Auth\Responses\" />
-    <Folder Include="Contracts\Auth\Requests\" />
-    <Folder Include="Models\Auth\Interfaces\" />
     <Folder Include="Mappings\" />
   </ItemGroup>
 

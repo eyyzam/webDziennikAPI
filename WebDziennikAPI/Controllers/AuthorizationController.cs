@@ -4,18 +4,21 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using WebDziennikAPI.Core.Contexts.Auth.Tables;
+using WebDziennikAPI.Core.Contracts.Auth.Requests;
+using WebDziennikAPI.Core.Contracts.Auth.Responses;
+using WebDziennikAPI.Core.Models.Auth.Interfaces;
 using WebDziennikAPI.Core.Services.Auth;
 
 namespace WebDziennikAPI.Controllers
 {
 	[Route("[controller]")]
 	[ApiController]
-	public class AuthorizationController : ControllerBase
+	public class AuthController : ControllerBase
 	{
 		private readonly IMapper _mapper;
 		private readonly IAuthService _authService;
 
-		public AuthorizationController(IMapper mapper, IAuthService authService)
+		public AuthController(IMapper mapper, IAuthService authService)
 		{
 			_mapper = mapper;
 			_authService = authService;
@@ -24,10 +27,14 @@ namespace WebDziennikAPI.Controllers
 		[Route("Login")]
 		[Produces("application/json")]
 		[HttpPost]
-		public async Task<ActionResult<List<Users>>> Login()
+		public async Task<ActionResult<LoginResponse>> Login(LoginRequest request)
 		{
 			var response = await _authService.GetUsersAsync();
-			return response.Where(x => x.Login == "eazymen").ToList();
+
+			if (response.Any()) return new LoginResponse() {AuthorizationToken = "XD"};
+
+			ModelState.AddModelError("Unauthorized", "You are unauthorized");
+			return Unauthorized(ModelState);
 		}
-	}
+ 	}
 }

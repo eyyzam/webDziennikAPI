@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using WebDziennikAPI.Core.Contexts.Auth;
 using WebDziennikAPI.Core.Contexts.Auth.Tables;
+using WebDziennikAPI.Core.Models.Auth.Interfaces;
 
 namespace WebDziennikAPI.Core.Services.Auth
 {

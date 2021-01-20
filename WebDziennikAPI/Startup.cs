@@ -7,6 +7,8 @@ using Microsoft.Extensions.Hosting;
 using WebDziennikAPI.Config.Extensions;
 using WebDziennikAPI.Config.Models;
 using WebDziennikAPI.Core.Contexts.Auth;
+using WebDziennikAPI.Core.Filters;
+using WebDziennikAPI.Core.Models.Auth.Interfaces;
 using WebDziennikAPI.Core.Services.Auth;
 
 namespace WebDziennikAPI
@@ -34,7 +36,7 @@ namespace WebDziennikAPI
 			ServiceRegistration(services);
 			EntityFrameworkDBConnection(services);
 
-			services.AddControllers();
+			services.AddControllers(controllers => controllers.Filters.Add<TokenAuthFilter>());
 		}
 
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

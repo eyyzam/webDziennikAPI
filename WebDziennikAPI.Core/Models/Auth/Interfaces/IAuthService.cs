@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using WebDziennikAPI.Core.Contexts.Auth.Tables;
 
-namespace WebDziennikAPI.Core.Services.Auth
+namespace WebDziennikAPI.Core.Models.Auth.Interfaces
 {
 	public interface IAuthService
 	{
