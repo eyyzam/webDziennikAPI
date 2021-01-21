@@ -11,5 +11,7 @@
 		public bool DefaultCorsPolicy { get; set; } = false;
 
 		public bool LogsEnabled { get; set; } = false;
+
+		public bool Authentication { get; set; } = false;
 	}
 }

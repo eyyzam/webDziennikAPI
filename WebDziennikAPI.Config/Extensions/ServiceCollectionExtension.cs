@@ -75,6 +75,30 @@ namespace WebDziennikAPI.Config.Extensions
 				config.SwaggerDoc("WebDziennikAPI", new OpenApiInfo { Title = "WebDziennikAPI", Version = "v1" });
 				config.DocumentFilter<RemoveSchemasFilter>();
 				config.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
+
+				config.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
+				{
+					Name = "Authorization",
+					Type = SecuritySchemeType.ApiKey,
+					Scheme = "Bearer",
+					BearerFormat = "WD",
+					In = ParameterLocation.Header,
+					Description = "JWT Authorization header using the Bearer Token scheme. Enter WD [space] and then paste token text"
+				});
+
+				config.AddSecurityRequirement(new OpenApiSecurityRequirement 
+				{
+					{
+						new OpenApiSecurityScheme 
+						{
+							Reference = new OpenApiReference
+							{
+								Type = ReferenceType.SecurityScheme,
+								Id = "Bearer"
+							}
+						}, new string[] {}
+					}
+				});
 			});
 			return services;
 		}

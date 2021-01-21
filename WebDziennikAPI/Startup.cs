@@ -31,7 +31,8 @@ namespace WebDziennikAPI
 				UseAPIConfiguration = true,
 				SwaggerEnabled = true,
 				DefaultCorsPolicy = true,
-				LogsEnabled = true
+				LogsEnabled = true,
+				Authentication = true
 			});
 
 			ServiceRegistration(services);
