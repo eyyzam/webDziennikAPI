@@ -37,8 +37,7 @@ namespace WebDziennikAPI.Core.Services.Common
 
 		public async Task<User> GetUserByUsernameAndPassword(string username, string password)
 		{
-			return _mapper.Map<Users, User>(await _usersContext.Users.SingleOrDefaultAsync(x => 
-				x.Username == username && x.Password == password));
+			return _mapper.Map<Users, User>(await _usersContext.Users.SingleOrDefaultAsync(x => x.Username == username && x.Password == password));
 		}
 	}
 }

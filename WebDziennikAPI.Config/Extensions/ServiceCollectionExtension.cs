@@ -7,12 +7,12 @@ using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Reflection;
 using WebDziennikAPI.Config.Configs;
 using WebDziennikAPI.Config.Filters;
 using WebDziennikAPI.Config.Models;
+using WebDziennikAPI.Core.Mappings;
 
 namespace WebDziennikAPI.Config.Extensions
 {
@@ -30,6 +30,13 @@ namespace WebDziennikAPI.Config.Extensions
 				assemblies.Insert(0, typeof(T).Assembly);
 
 				services.AddAutoMapper(assemblies);
+
+				var config = new MapperConfiguration(x =>
+				{
+					x.AddProfile(new AuthProfile());
+				});
+				var mapper = config.CreateMapper();
+				services.AddSingleton(mapper);
 			}
 
 			if (configuration.UseAPIConfiguration)
