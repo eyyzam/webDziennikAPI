@@ -3,8 +3,10 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
+using WebDziennikAPI.Core.Attributes.Auth;
 using WebDziennikAPI.Core.Contracts.Auth.Requests;
 using WebDziennikAPI.Core.Contracts.Auth.Responses;
+using WebDziennikAPI.Core.Models.Auth.Implementations;
 using WebDziennikAPI.Core.Models.Auth.Interfaces;
 
 namespace WebDziennikAPI.Controllers
@@ -38,14 +40,13 @@ namespace WebDziennikAPI.Controllers
 			return Unauthorized("Invalid Authentication Credentials!");
 		}
 
-		[Route("Config")]
+		[Route("GetUserInfoByToken")]
 		[Produces("application/json")]
 		[HttpGet]
-		public ActionResult<bool> Config()
+		[Authorize]
+		public ActionResult<User> GetUserInfoByToken()
 		{
-			var configEnumerable = _config.AsEnumerable();
-			var xd = configEnumerable.FirstOrDefault(item => item.Key == "Auth:Secret").Value;
-			return true;
+			return Ok((User) HttpContext.Items["User"]);
 		}
 	}
 }

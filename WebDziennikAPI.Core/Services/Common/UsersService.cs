@@ -30,12 +30,17 @@ namespace WebDziennikAPI.Core.Services.Common
 			_usersContext = new UsersContext(optionsBuilder.Options);
 		}
 
-		public async Task<User> GetUserByID(int userID)
+		public User GetUserByID(int userID)
+		{
+			return _mapper.Map<Users, User>(_usersContext.Users.SingleOrDefault(x => x.Id == userID));
+		}
+
+		public async Task<User> GetUserByIDAsync(int userID)
 		{
 			return _mapper.Map<Users, User>(await _usersContext.Users.SingleOrDefaultAsync(x => x.Id == userID));
 		}
 
-		public async Task<User> GetUserByUsernameAndPassword(string username, string password)
+		public async Task<User> GetUserByUsernameAndPasswordAsync(string username, string password)
 		{
 			return _mapper.Map<Users, User>(await _usersContext.Users.SingleOrDefaultAsync(x => x.Username == username && x.Password == password));
 		}

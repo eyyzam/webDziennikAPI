@@ -31,8 +31,7 @@ namespace WebDziennikAPI
 				UseAPIConfiguration = true,
 				SwaggerEnabled = true,
 				DefaultCorsPolicy = true,
-				LogsEnabled = true,
-				Authentication = true
+				LogsEnabled = true
 			});
 
 			ServiceRegistration(services);
@@ -50,13 +49,13 @@ namespace WebDziennikAPI
 
 			app.UseRouting();
 
+			app.AddDefaultConfiguration();
+			app.RegisterMiddlewares();
+
 			app.UseEndpoints(endpoints =>
 			{
 				endpoints.MapControllers();
 			});
-
-			app.AddDefaultConfiguration();
-			app.RegisterMiddlewares();
 		}
 
 		public static void ServiceRegistration(IServiceCollection services)

@@ -5,8 +5,10 @@ namespace WebDziennikAPI.Core.Models.Auth.Interfaces.Common
 {
 	public interface IUsersService
 	{
-		Task<User> GetUserByID(int userID);
+		User GetUserByID(int userID);
 
-		Task<User> GetUserByUsernameAndPassword(string username, string password);
+		Task<User> GetUserByIDAsync(int userID);
+
+		Task<User> GetUserByUsernameAndPasswordAsync(string username, string password);
 	}
 }

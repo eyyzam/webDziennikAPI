@@ -46,7 +46,7 @@ namespace WebDziennikAPI.Core.Services.Auth
 		public async Task<AuthenticateByCredentialsResponse> AuthenticateByCredentials(AuthenticateByCredentialsRequest request)
 		{
 			var response = new AuthenticateByCredentialsResponse();
-			var user = await _usersService.GetUserByUsernameAndPassword(request.Username, request.Password);
+			var user = await _usersService.GetUserByUsernameAndPasswordAsync(request.Username, request.Password);
 
 			if (user == null)
 			{
