@@ -25,19 +25,7 @@ namespace WebDziennikAPI.Config.Extensions
 		public static IServiceCollection AddDefaultConfiguration<T>(this IServiceCollection services, DefaultConfigurationModel configuration)
 		{
 			if (configuration.AutoMapperEnabled)
-			{
-				var assemblies = new List<Assembly>(AutoMapperExtension.GetAssemblies());
-				assemblies.Insert(0, typeof(T).Assembly);
-
-				services.AddAutoMapper(assemblies);
-
-				var config = new MapperConfiguration(x =>
-				{
-					x.AddProfile(new AuthProfile());
-				});
-				var mapper = config.CreateMapper();
-				services.AddSingleton(mapper);
-			}
+				services.AddAutoMapper<T>();
 
 			if (configuration.UseAPIConfiguration)
 				services.AddAPIConfiguration();
@@ -52,6 +40,23 @@ namespace WebDziennikAPI.Config.Extensions
 			{
 
 			}
+
+			return services;
+		}
+
+		public static IServiceCollection AddAutoMapper<T>(this IServiceCollection services)
+		{
+			var assemblies = new List<Assembly>(AutoMapperExtension.GetAssemblies());
+			assemblies.Insert(0, typeof(T).Assembly);
+
+			services.AddAutoMapper(assemblies);
+
+			var config = new MapperConfiguration(x =>
+			{
+				x.AddProfile(new AuthProfile());
+			});
+			var mapper = config.CreateMapper();
+			services.AddSingleton(mapper);
 
 			return services;
 		}
