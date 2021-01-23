@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Net;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ namespace WebDziennikAPI.Controllers
 {
 	[Route("[controller]")]
 	[ApiController]
+	[Produces("application/json")]
 	public class AuthController : ControllerBase
 	{
 		private readonly IMapper _mapper;
@@ -27,8 +29,8 @@ namespace WebDziennikAPI.Controllers
 		}
 
 		[Route("Authenticate")]
-		[Produces("application/json")]
 		[HttpPost]
+		[ProducesResponseType(typeof(AuthenticateResponse), (int) HttpStatusCode.OK)]
 		public async Task<ActionResult<AuthenticateResponse>> Authenticate(AuthenticateRequest request)
 		{
 			var authRequest = new AuthenticateByCredentialsRequest() { Username = request.Username, Password = request.Password};

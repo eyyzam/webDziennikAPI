@@ -10,7 +10,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using WebDziennikAPI.Config.Configs;
-using WebDziennikAPI.Config.Filters;
 using WebDziennikAPI.Config.Models;
 using WebDziennikAPI.Core.Mappings;
 
@@ -31,7 +30,7 @@ namespace WebDziennikAPI.Config.Extensions
 				services.AddAPIConfiguration();
 
 			if (configuration.SwaggerEnabled)
-				services.AddSwagger();
+				services.AddSwagger<T>();
 
 			if (configuration.DefaultCorsPolicy)
 				services.AddDefaultCorsPolicy();
@@ -71,15 +70,18 @@ namespace WebDziennikAPI.Config.Extensions
 			return services;
 		}
 
-		public static IServiceCollection AddSwagger(this IServiceCollection services)
+		public static IServiceCollection AddSwagger<T>(this IServiceCollection services)
 		{
 			UsingSwagger = true;
 			
 			services.AddSwaggerGen(config =>
 			{
-				config.SwaggerDoc("WebDziennikAPI", new OpenApiInfo { Title = "WebDziennikAPI", Version = "v1" });
-				config.DocumentFilter<RemoveSchemasFilter>();
+				config.SwaggerDoc("v1", new OpenApiInfo { Title = "WebDziennikAPI", Version = "v1" });
 				config.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
+
+				var directory = AppDomain.CurrentDomain.BaseDirectory;
+				var assemblyName = typeof(T).Assembly.ManifestModule.Name.Replace(".dll", string.Empty);
+				config.IncludeXmlComments($@"{directory}/{assemblyName}.xml");
 
 				config.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
 				{
@@ -105,6 +107,9 @@ namespace WebDziennikAPI.Config.Extensions
 					}
 				});
 			});
+
+			services.AddSwaggerGenNewtonsoftSupport();
+
 			return services;
 		}
 

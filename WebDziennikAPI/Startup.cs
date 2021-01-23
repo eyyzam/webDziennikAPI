@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,6 +26,12 @@ namespace WebDziennikAPI
 
 		public void ConfigureServices(IServiceCollection services)
 		{
+			ServiceRegistration(services);
+			EntityFrameworkDBConnection(services);
+
+			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Latest);
+			services.AddControllers();
+
 			services.AddDefaultConfiguration<Startup>(new DefaultConfigurationModel()
 			{
 				AutoMapperEnabled = true,
@@ -33,11 +40,6 @@ namespace WebDziennikAPI
 				DefaultCorsPolicy = true,
 				LogsEnabled = true
 			});
-
-			ServiceRegistration(services);
-			EntityFrameworkDBConnection(services);
-
-			services.AddControllers();
 		}
 
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -48,14 +50,14 @@ namespace WebDziennikAPI
 			}
 
 			app.UseRouting();
-
-			app.AddDefaultConfiguration();
 			app.RegisterMiddlewares();
 
 			app.UseEndpoints(endpoints =>
 			{
 				endpoints.MapControllers();
 			});
+
+			app.AddDefaultConfiguration();
 		}
 
 		public static void ServiceRegistration(IServiceCollection services)

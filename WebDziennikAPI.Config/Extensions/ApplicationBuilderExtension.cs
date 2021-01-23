@@ -9,10 +9,14 @@ namespace WebDziennikAPI.Config.Extensions
 		{
 			if (ServiceCollectionExtension.UsingSwagger)
 			{
-				app.UseSwagger();
+				app.UseSwagger(config =>
+				{
+					config.SerializeAsV2 = true;
+				});
 				app.UseSwaggerUI(config =>
 				{
-					config.SwaggerEndpoint("WebDziennikAPI/swagger.json", "WebDziennikAPI");
+					config.DefaultModelsExpandDepth(-1);
+					config.SwaggerEndpoint("/swagger/v1/swagger.json", "WebDziennikAPI");
 				});
 			}
 
