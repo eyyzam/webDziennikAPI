@@ -29,12 +29,12 @@ namespace WebDziennikAPI.Core.Middlewares.Auth
 			var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
 
 			if (token != null)
-				AttachUserToContext(context, authService, token);
+				AttachUserToContext(context, token);
 
 			await _next(context);
 		}
 
-		private void AttachUserToContext(HttpContext context, IAuthService authService, string token)
+		private void AttachUserToContext(HttpContext context, string token)
 		{
 			try
 			{
