@@ -22,4 +22,8 @@
     <PackageReference Include="Swashbuckle.AspNetCore.Newtonsoft" Version="5.6.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Contracts\Common\Requests\" />
+  </ItemGroup>
+
 </Project>

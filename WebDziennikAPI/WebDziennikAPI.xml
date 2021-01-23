@@ -4,5 +4,18 @@
         <name>WebDziennikAPI</name>
     </assembly>
     <members>
+        <member name="M:WebDziennikAPI.Controllers.AuthController.AuthenticateByCredentials(WebDziennikAPI.Core.Contracts.Auth.Requests.AuthenticateRequest)">
+            <summary>
+             Method allows to authenticate user by username and password. Returns WD Token
+            </summary>
+            <param name="request">Object containing username and password</param>
+            <returns>WD Token</returns>
+        </member>
+        <member name="M:WebDziennikAPI.Controllers.AuthController.Logout">
+            <summary>
+             Method allows user to logout. If successful returns message
+            </summary>
+            <returns>Status Message</returns>
+        </member>
     </members>
 </doc>

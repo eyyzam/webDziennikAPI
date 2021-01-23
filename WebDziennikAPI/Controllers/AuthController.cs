@@ -1,54 +1,69 @@
-﻿using System.Linq;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Net;
-using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
 using WebDziennikAPI.Core.Attributes.Auth;
 using WebDziennikAPI.Core.Contracts.Auth.Requests;
 using WebDziennikAPI.Core.Contracts.Auth.Responses;
+using WebDziennikAPI.Core.Contracts.Common.Responses;
 using WebDziennikAPI.Core.Models.Auth.Implementations;
 using WebDziennikAPI.Core.Models.Auth.Interfaces;
 
 namespace WebDziennikAPI.Controllers
 {
-	[Route("[controller]")]
 	[ApiController]
 	[Produces("application/json")]
 	public class AuthController : ControllerBase
 	{
-		private readonly IMapper _mapper;
 		private readonly IAuthService _authService;
-		private readonly IConfiguration _config;
 
-		public AuthController(IMapper mapper, IAuthService authService, IConfiguration config)
+		public AuthController(IAuthService authService)
 		{
-			_mapper = mapper;
 			_authService = authService;
-			_config = config;
 		}
 
-		[Route("Authenticate")]
+		/// <summary>
+		///  Method allows to authenticate user by username and password. Returns WD Token
+		/// </summary>
+		/// <param name="request">Object containing username and password</param>
+		/// <returns>WD Token</returns>
+		[Route("AuthenticateByCredentials")]
 		[HttpPost]
 		[ProducesResponseType(typeof(AuthenticateResponse), (int) HttpStatusCode.OK)]
-		public async Task<ActionResult<AuthenticateResponse>> Authenticate(AuthenticateRequest request)
+		[ProducesResponseType(typeof(ErrorMessagerResponse), (int)HttpStatusCode.BadRequest)]
+		[ProducesResponseType(typeof(ErrorMessagerResponse), (int) HttpStatusCode.Unauthorized)]
+		[ProducesResponseType((int) HttpStatusCode.InternalServerError)]
+		public async Task<ActionResult<AuthenticateResponse>> AuthenticateByCredentials(AuthenticateRequest request)
 		{
+			if (string.IsNullOrEmpty(request.Username) || string.IsNullOrEmpty(request.Password))
+				return BadRequest(new ErrorMessagerResponse() { StatusCode = (int) HttpStatusCode.BadRequest, Message = "Invalid request parameters" });
+
 			var authRequest = new AuthenticateByCredentialsRequest() { Username = request.Username, Password = request.Password};
 			var response = await _authService.AuthenticateByCredentials(authRequest);
 
 			if (response.AuthenticationStatus) 
-				return new AuthenticateResponse() { AuthorizationToken = response.Token };
+				return new AuthenticateResponse() { User = response.User, AuthorizationToken = response.Token };
 
-			return Unauthorized("Invalid Authentication Credentials!");
+			return Unauthorized(new ErrorMessagerResponse() { StatusCode = (int) HttpStatusCode.Unauthorized, Message = "Invalid Credentials"});
 		}
 
-		[Route("GetUserInfoByToken")]
-		[Produces("application/json")]
+		/// <summary>
+		///  Method allows user to logout. If successful returns message
+		/// </summary>
+		/// <returns>Status Message</returns>
+		[Route("Logout")]
 		[HttpGet]
 		[Authorize]
-		public ActionResult<User> GetUserInfoByToken()
+		[ProducesResponseType(typeof(LogoutResponse), (int) HttpStatusCode.OK)]
+		[ProducesResponseType(typeof(ErrorMessagerResponse), (int) HttpStatusCode.Unauthorized)]
+		[ProducesResponseType((int)HttpStatusCode.InternalServerError)]
+		public ActionResult<LogoutResponse> Logout()
 		{
-			return Ok((User) HttpContext.Items["User"]);
+			var user = (User) HttpContext.Items["User"];
+
+			if (user != null && HttpContext.Items.Remove(user))
+				return new LogoutResponse() { Message = "Logout was successful" };
+
+			return Unauthorized(new ErrorMessagerResponse() { StatusCode = (int)HttpStatusCode.Unauthorized, Message = "Invalid Credentials" });
 		}
 	}
 }
