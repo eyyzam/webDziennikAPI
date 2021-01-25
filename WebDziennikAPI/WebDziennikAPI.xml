@@ -4,6 +4,12 @@
         <name>WebDziennikAPI</name>
     </assembly>
     <members>
+        <member name="M:WebDziennikAPI.Controllers.AdminController.GetUserByAuthorizationToken">
+            <summary>
+             If valid Authorization token is passed returns User's data from Token payload
+            </summary>
+            <returns>User's account information</returns>
+        </member>
         <member name="M:WebDziennikAPI.Controllers.AuthController.AuthenticateByCredentials(WebDziennikAPI.Core.Contracts.Auth.Requests.AuthenticateRequest)">
             <summary>
              Method allows to authenticate user by username and password. Returns WD Token
