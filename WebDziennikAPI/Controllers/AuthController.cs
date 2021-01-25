@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using System.Threading.Tasks;
-using WebDziennikAPI.Core.Attributes.Auth;
 using WebDziennikAPI.Core.Contracts.Auth.Requests;
 using WebDziennikAPI.Core.Contracts.Auth.Responses;
 using WebDziennikAPI.Core.Contracts.Common.Responses;
+using WebDziennikAPI.Core.Filters.Auth;
 using WebDziennikAPI.Core.Models.Auth.Implementations;
 using WebDziennikAPI.Core.Models.Auth.Interfaces;
 
@@ -60,7 +60,7 @@ namespace WebDziennikAPI.Controllers
 		{
 			var user = (User) HttpContext.Items["User"];
 
-			if (user != null && HttpContext.Items.Remove(user))
+			if (user != null && HttpContext.Items.Remove("User"))
 				return new LogoutResponse() { Message = "Logout was successful" };
 
 			return Unauthorized(new ErrorMessagerResponse() { StatusCode = (int)HttpStatusCode.Unauthorized, Message = "Invalid Credentials" });

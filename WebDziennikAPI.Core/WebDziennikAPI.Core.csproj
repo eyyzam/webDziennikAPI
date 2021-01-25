@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <Folder Include="Contracts\Common\Requests\" />
+    <Folder Include="Middlewares\Auth\" />
   </ItemGroup>
 
 </Project>

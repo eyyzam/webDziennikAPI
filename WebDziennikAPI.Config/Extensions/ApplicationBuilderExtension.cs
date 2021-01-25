@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Builder;
-using WebDziennikAPI.Core.Middlewares.Auth;
 
 namespace WebDziennikAPI.Config.Extensions
 {
@@ -23,13 +22,6 @@ namespace WebDziennikAPI.Config.Extensions
 			if (ServiceCollectionExtension.UsingDefaultCorsPolicy)
 				app.UseCors(ServiceCollectionExtension.NameOfCorsPolicy);
 				
-			return app;
-		}
-
-		public static IApplicationBuilder RegisterMiddlewares(this IApplicationBuilder app)
-		{
-			app.UseMiddleware<JWTMiddleware>();
-
 			return app;
 		}
 	}

@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,14 +14,12 @@ namespace WebDziennikAPI.Core.Services.Auth
 {
 	public class AuthService : IAuthService
 	{
-		private readonly IMapper _mapper;
 		private readonly UsersContext _usersContext;
 		private readonly IAuthTokenService _authTokenService;
 		private readonly IUsersService _usersService;
 
-		public AuthService(IMapper mapper, IConfiguration config, IAuthTokenService authTokenService, IUsersService usersService)
+		public AuthService(IConfiguration config, IAuthTokenService authTokenService, IUsersService usersService)
 		{
-			_mapper = mapper;
 			_authTokenService = authTokenService;
 			_usersService = usersService;
 

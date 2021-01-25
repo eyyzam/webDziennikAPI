@@ -1,3 +1,4 @@
+using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -50,7 +51,6 @@ namespace WebDziennikAPI
 			}
 
 			app.UseRouting();
-			app.RegisterMiddlewares();
 
 			app.UseEndpoints(endpoints =>
 			{
@@ -62,6 +62,7 @@ namespace WebDziennikAPI
 
 		public static void ServiceRegistration(IServiceCollection services)
 		{
+			services.AddScoped<JwtSecurityTokenHandler>();
 			services.AddSingleton<IUsersService, UsersService>();
 			services.AddScoped<IAuthTokenService, AuthTokenService>();
 			services.AddScoped<IAuthService, AuthService>();
