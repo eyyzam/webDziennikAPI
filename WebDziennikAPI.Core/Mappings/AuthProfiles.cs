@@ -12,7 +12,7 @@ namespace WebDziennikAPI.Core.Mappings
 		{
 			// Table Users -> User class
 			CreateMap<Users, User>()
-				.ForMember(dest => dest.Role, opt => opt.MapFrom(src => Enum.GetName(typeof(Role), (ushort) src.RoleID)))
+				.ForMember(dest => dest.Role, opt => opt.MapFrom(src => Enum.GetName(typeof(Role), (ushort) src.RoleID).ToString()))
 				.ReverseMap();
 		}
 	}

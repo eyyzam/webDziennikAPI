@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using WebDziennikAPI.Core.Models.Auth.Enums;
 
 namespace WebDziennikAPI.Core.Models.Auth.Implementations
 {
@@ -18,6 +17,6 @@ namespace WebDziennikAPI.Core.Models.Auth.Implementations
 
 		public string Email { get; set; }
 
-		public Role Role { get; set; }
+		public string Role { get; set; }
 	}
 }
