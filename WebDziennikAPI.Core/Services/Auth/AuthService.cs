@@ -39,8 +39,7 @@ namespace WebDziennikAPI.Core.Services.Auth
 
 		public async Task<List<Users>> GetUsersAsync()
 		{
-			var users = await _usersContext.Users.ToListAsync();
-			return users;
+			return await _usersContext.Users.ToListAsync();
 		}
 
 		public async Task<AuthenticateByCredentialsResponse> AuthenticateByCredentials(AuthenticateByCredentialsRequest request)

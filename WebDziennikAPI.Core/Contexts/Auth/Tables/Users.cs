@@ -29,5 +29,8 @@ namespace WebDziennikAPI.Core.Contexts.Auth.Tables
 		[EmailAddress]
 		[StringLength(100)]
 		public string Email { get; set; }
+
+		[Column("RoleID")]
+		public int RoleID { get; set; }
 	}
 }

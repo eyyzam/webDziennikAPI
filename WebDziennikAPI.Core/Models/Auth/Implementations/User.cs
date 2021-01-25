@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using WebDziennikAPI.Core.Models.Auth.Enums;
 
 namespace WebDziennikAPI.Core.Models.Auth.Implementations
@@ -19,8 +18,6 @@ namespace WebDziennikAPI.Core.Models.Auth.Implementations
 
 		public string Email { get; set; }
 
-		public Role Role { get; set; } = Role.Student;
-
-		public List<Permissions> Permissions { get; set; } = new List<Permissions>();
+		public Role Role { get; set; }
 	}
 }

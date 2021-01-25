@@ -1,10 +1,10 @@
 ﻿namespace WebDziennikAPI.Core.Models.Auth.Enums
 {
-	public enum Role
+	public enum Role : ushort
 	{
-		Student,
-		Teacher,
-		Management,
-		Director
+		Student = 1,
+		Teacher = 2,
+		Management = 3,
+		Director = 4
 	}
 }
