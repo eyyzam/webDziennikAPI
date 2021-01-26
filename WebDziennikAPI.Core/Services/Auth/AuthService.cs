@@ -3,12 +3,12 @@ using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebDziennikAPI.Core.Contexts.Auth;
-using WebDziennikAPI.Core.Contexts.Auth.Tables;
+using WebDziennikAPI.Core.Contexts;
 using WebDziennikAPI.Core.Contracts.Auth.Requests;
 using WebDziennikAPI.Core.Contracts.Auth.Responses;
 using WebDziennikAPI.Core.Models.Auth.Interfaces;
 using WebDziennikAPI.Core.Models.Auth.Interfaces.Common;
+using WebDziennikAPI.Core.Tables;
 
 namespace WebDziennikAPI.Core.Services.Auth
 {

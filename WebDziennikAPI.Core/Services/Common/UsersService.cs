@@ -1,12 +1,12 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using WebDziennikAPI.Core.Contexts.Auth;
-using WebDziennikAPI.Core.Contexts.Auth.Tables;
+using System.Linq;
+using System.Threading.Tasks;
+using WebDziennikAPI.Core.Contexts;
 using WebDziennikAPI.Core.Models.Auth.Implementations;
 using WebDziennikAPI.Core.Models.Auth.Interfaces.Common;
+using WebDziennikAPI.Core.Tables;
 
 namespace WebDziennikAPI.Core.Services.Common
 {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using WebDziennikAPI.Core.Contexts.Auth.Tables;
+using WebDziennikAPI.Core.Tables;
 
-namespace WebDziennikAPI.Core.Contexts.Auth
+namespace WebDziennikAPI.Core.Contexts
 {
 	public class UsersContext : DbContext
 	{

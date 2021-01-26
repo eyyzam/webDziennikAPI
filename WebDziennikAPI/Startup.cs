@@ -1,4 +1,3 @@
-using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -6,9 +5,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.IdentityModel.Tokens.Jwt;
 using WebDziennikAPI.Config.Extensions;
 using WebDziennikAPI.Config.Models;
-using WebDziennikAPI.Core.Contexts.Auth;
+using WebDziennikAPI.Core.Contexts;
 using WebDziennikAPI.Core.Models.Auth.Interfaces;
 using WebDziennikAPI.Core.Models.Auth.Interfaces.Common;
 using WebDziennikAPI.Core.Services.Auth;

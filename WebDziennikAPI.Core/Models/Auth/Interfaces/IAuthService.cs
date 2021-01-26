@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using WebDziennikAPI.Core.Contexts.Auth.Tables;
 using WebDziennikAPI.Core.Contracts.Auth.Requests;
 using WebDziennikAPI.Core.Contracts.Auth.Responses;
+using WebDziennikAPI.Core.Tables;
 
 namespace WebDziennikAPI.Core.Models.Auth.Interfaces
 {

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace WebDziennikAPI.Core.Contexts.Auth.Tables
+namespace WebDziennikAPI.Core.Tables
 {
 	[Table("UserAccounts")]
 	public class Users
@@ -10,8 +10,8 @@ namespace WebDziennikAPI.Core.Contexts.Auth.Tables
 		[Column("ID")]
 		public int Id { get; set; }
 
-		[StringLength(50)]
 		[Column("Name")]
+		[StringLength(50)]
 		public string Name { get; set; }
 
 		[Column("Surname")]
