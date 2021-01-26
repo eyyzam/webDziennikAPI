@@ -70,6 +70,7 @@ namespace WebDziennikAPI
 
 		public static void EntityFrameworkDBConnection(IServiceCollection services)
 		{
+			services.AddEntityFrameworkConnection<RolesContext>(QueryTrackingBehavior.NoTracking);
 			services.AddEntityFrameworkConnection<UsersContext>(QueryTrackingBehavior.NoTracking);
 		}
 	}

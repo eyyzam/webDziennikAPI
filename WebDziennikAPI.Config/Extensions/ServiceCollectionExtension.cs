@@ -52,6 +52,7 @@ namespace WebDziennikAPI.Config.Extensions
 
 			var config = new MapperConfiguration(x =>
 			{
+				x.AddProfile(new AdminProfile());
 				x.AddProfile(new AuthProfile());
 			});
 			var mapper = config.CreateMapper();
