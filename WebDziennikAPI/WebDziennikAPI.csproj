@@ -3,6 +3,7 @@
 	<PropertyGroup>
 		<TargetFramework>net5.0</TargetFramework>
 		<Configurations>Debug;Release</Configurations>
+		<GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -10,44 +11,25 @@
 		<NoWarn>1701;1702;1591</NoWarn>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-	  <DocumentationFile>C:\Projects\API\WebDziennikAPI\WebDziennikAPI.xml</DocumentationFile>
-	  <WarningsAsErrors>;NU1605</WarningsAsErrors>
-	  <OutputPath></OutputPath>
-	  <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
-	  <DefineConstants>TRACE</DefineConstants>
-	</PropertyGroup>
-
 	<ItemGroup>
-		<PackageReference Include="AutoMapper" Version="10.1.1" />
-		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
-		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.1" NoWarn="NU1605" />
-		<PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="5.0.1" NoWarn="NU1605" />
-		<PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />
-		<PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.7" />
-		<PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
-		<PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
-		<PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.2.0" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.1" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.1" />
-		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
-		<PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="5.0.1" />
-		<PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="5.0.0" />
-		<PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-		<PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
-		<PackageReference Include="Swashbuckle.AspNetCore.Newtonsoft" Version="5.6.3" />
+		<None Remove="config.default.json" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\WebDziennikAPI.Config\WebDziennikAPI.Config.csproj" />
-		<ProjectReference Include="..\WebDziennikAPI.Core\WebDziennikAPI.Core.csproj" />
-		<ProjectReference Include="..\WebDziennikAPI.Services\WebDziennikAPI.Services.csproj" />
+		<EmbeddedResource Include="config.default.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+			<ExcludeFromManifest>false</ExcludeFromManifest>
+		</EmbeddedResource>
+		<EmbeddedResource Include="config.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+			<ExcludeFromManifest>false</ExcludeFromManifest>
+		</EmbeddedResource>
 	</ItemGroup>
 
 	<ItemGroup>
 		<Content Update="config.dev.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-            <DependentUpon>config.json</DependentUpon>
+			<DependentUpon>config.json</DependentUpon>
 		</Content>
 		<Content Update="config.prod.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -68,8 +50,39 @@
 		</Content>
 	</ItemGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+	  <DocumentationFile>C:\Projects\API\WebDziennikAPI\WebDziennikAPI.xml</DocumentationFile>
+	  <WarningsAsErrors>;NU1605</WarningsAsErrors>
+	  <OutputPath></OutputPath>
+	  <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+	  <DefineConstants>TRACE</DefineConstants>
+	</PropertyGroup>
+
+	
+
 	<ItemGroup>
-	  <Folder Include="Contexts\Accounts\Responses\" />
+		<PackageReference Include="AutoMapper" Version="10.1.1" />
+		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.1" NoWarn="NU1605" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="5.0.1" NoWarn="NU1605" />
+		<PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.7" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+		<PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.2.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.1" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.1" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
+		<PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="5.0.4" />
+		<PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="5.0.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+		<PackageReference Include="Swashbuckle.AspNetCore.Newtonsoft" Version="5.6.3" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\WebDziennikAPI.Core\WebDziennikAPI.Core.csproj" />
+		<ProjectReference Include="..\WebDziennikAPI.Services\WebDziennikAPI.Services.csproj" />
 	</ItemGroup>
 
 </Project>

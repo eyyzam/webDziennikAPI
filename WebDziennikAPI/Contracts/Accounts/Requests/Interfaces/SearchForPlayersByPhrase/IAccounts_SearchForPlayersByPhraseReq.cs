@@ -1,8 +1,8 @@
 ﻿using WebDziennikAPI.Core.Models.Common.Enums;
 
-namespace WebDziennikAPI.Contexts.Accounts.Requests
+namespace WebDziennikAPI.Contracts.Requests
 {
-	public interface ISearchForPlayersByPhraseReq
+	public interface IAccounts_SearchForPlayersByPhraseReq
 	{
 		string Search { get; set; }
 
