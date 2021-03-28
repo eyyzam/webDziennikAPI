@@ -13,6 +13,7 @@ using WebDziennikAPI.Core.Models.Auth.Interfaces;
 using WebDziennikAPI.Core.Models.Auth.Interfaces.Common;
 using WebDziennikAPI.Core.Services.Auth;
 using WebDziennikAPI.Core.Services.Common;
+using WebDziennikAPI.Services.Common.Configuration;
 
 namespace WebDziennikAPI
 {
@@ -66,6 +67,7 @@ namespace WebDziennikAPI
 			services.AddSingleton<IUsersService, UsersService>();
 			services.AddScoped<IAuthTokenService, AuthTokenService>();
 			services.AddScoped<IAuthService, AuthService>();
+			services.AddScoped<IConfigurationService, ConfigurationService>();
 		}
 
 		public static void EntityFrameworkDBConnection(IServiceCollection services)

@@ -26,7 +26,6 @@
     <Folder Include="Contracts\Common\Requests\" />
     <Folder Include="Models\Admin\Enums\" />
     <Folder Include="Models\Admin\Interfaces\" />
-    <Folder Include="Models\Common\Enums\" />
   </ItemGroup>
 
 </Project>

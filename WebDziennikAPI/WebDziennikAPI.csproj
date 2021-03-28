@@ -41,6 +41,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\WebDziennikAPI.Config\WebDziennikAPI.Config.csproj" />
 		<ProjectReference Include="..\WebDziennikAPI.Core\WebDziennikAPI.Core.csproj" />
+		<ProjectReference Include="..\WebDziennikAPI.Services\WebDziennikAPI.Services.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -65,6 +66,10 @@
 		<Content Update="appsettings.Development.json">
 			<DependentUpon>appsettings.json</DependentUpon>
 		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Contexts\Accounts\Responses\" />
 	</ItemGroup>
 
 </Project>

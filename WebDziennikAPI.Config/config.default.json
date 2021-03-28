@@ -2,5 +2,6 @@
 	"connectionString": "Data Source=DESKTOP-TC60P45\\SQLEXPRESS;Initial Catalog=WEB_DZIENNIK_DB;Integrated Security=True;UID=DESKTOP-TC60P45\\eazym;PWD=;Pooling=True; Min Pool Size=0; Max Pool Size=500",
 	"Auth": {
 		"Secret": "%*_HQn55P%j!Jy^1|2|PqWW90I$"
-	}
+	},
+	"ApplicationID": "1a7e6d556e6fe1cf65f424753bff7bcb"
 }
