@@ -1,6 +1,4 @@
-﻿using WebDziennikAPI.Core.Models.Common.Enums;
-
-namespace WebDziennikAPI.Contracts.Requests
+﻿namespace WebDziennikAPI.Contracts.Requests
 {
 	public interface IAccounts_SearchForPlayersByPhraseReq
 	{
@@ -8,10 +6,10 @@ namespace WebDziennikAPI.Contracts.Requests
 
 		string Fields { get; set; }
 
-		Language Language { get; set; }
+		string Language { get; set; }
 
 		int Limit { get; set; }
 
-		SearchType Type { get; set; }
+		string Type { get; set; }
 	}
 }

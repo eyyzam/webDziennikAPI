@@ -4,7 +4,7 @@
 	{
 		string Status { get; set; }
 
-		IMeta Meta { get; set; }
+		Meta Meta { get; set; }
 
 		T Data { get; set; }
 	}

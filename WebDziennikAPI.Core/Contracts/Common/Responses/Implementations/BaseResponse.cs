@@ -4,7 +4,7 @@
 	{
 		public string Status { get; set; }
 
-		public IMeta Meta { get; set; }
+		public Meta Meta { get; set; }
 
 		public T Data { get; set; }
 	}

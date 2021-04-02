@@ -14,6 +14,7 @@ using WebDziennikAPI.Core.Models.Auth.Interfaces;
 using WebDziennikAPI.Core.Models.Auth.Interfaces.Common;
 using WebDziennikAPI.Core.Services.Auth;
 using WebDziennikAPI.Core.Services.Common;
+using WebDziennikAPI.Services.Accounts;
 using WebDziennikAPI.Services.Common.Configuration;
 
 namespace WebDziennikAPI
@@ -31,6 +32,7 @@ namespace WebDziennikAPI
 		{
 			ServiceRegistration(services);
 			EntityFrameworkDBConnection(services);
+			HttpClientsRegistration(services);
 
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Latest);
 			services.AddControllers();
@@ -69,12 +71,21 @@ namespace WebDziennikAPI
 			services.AddScoped<IAuthTokenService, AuthTokenService>();
 			services.AddScoped<IAuthService, AuthService>();
 			services.AddScoped<IConfigurationService, ConfigurationService>();
+			services.AddScoped<IAccountsService, AccountsService>();
 		}
 
 		public static void EntityFrameworkDBConnection(IServiceCollection services)
 		{
 			services.AddEntityFrameworkConnection<RolesContext>(QueryTrackingBehavior.NoTracking);
 			services.AddEntityFrameworkConnection<UsersContext>(QueryTrackingBehavior.NoTracking);
+		}
+
+		public static void HttpClientsRegistration(IServiceCollection services)
+		{
+			services.AddHttpClient("default", config =>
+			{
+				config.DefaultRequestHeaders.Add("Accept", "text/plain");
+			});
 		}
 	}
 }

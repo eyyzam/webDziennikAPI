@@ -1,7 +1,10 @@
-﻿using System;
-using AutoMapper;
+﻿using AutoMapper;
 using WebDziennikAPI.Contracts.Requests;
-using WebDziennikAPI.Core.Models.Common.Enums;
+using WebDziennikAPI.Contracts.Responses;
+using WebDziennikAPI.Contracts.Responses.Data;
+using WebDziennikAPI.Services.Accounts.Contracts.Requests;
+using WebDziennikAPI.Services.Accounts.Contracts.Responses;
+using WebDziennikAPI.Services.Accounts.Contracts.Responses.Data;
 
 namespace WebDziennikAPI.Controllers.Mappings
 {
@@ -9,15 +12,10 @@ namespace WebDziennikAPI.Controllers.Mappings
 	{
 		public AccountsProfile()
 		{
-			CreateMap<ISearchForPlayersByPhraseReq, IAccounts_SearchForPlayersByPhraseReq>()
-				.ForMember(dest => dest.Language, opt => opt.MapFrom((src, dest) =>
-					!Enum.TryParse(typeof(Language), src.Language, out var parsedLanguage)
-						? Language.EN
-						: parsedLanguage))
-				.ForMember(dest => dest.Search, opt => opt.MapFrom((src, dest) =>
-					!Enum.TryParse(typeof(SearchType), src.Search, out var parsedSearchType)
-						? SearchType.StartsWith
-						: parsedSearchType));
+			CreateMap<ISearchForPlayersByPhraseReq, IAccounts_SearchForPlayersByPhraseReq>();
+			CreateMap<IAccounts_SearchForPlayersByPhraseReq, IAccountsService_SearchForPlayersByPhraseReq>();
+			CreateMap<AccountsService_SearchForPlayersByPhraseData, SearchForPlayersByPhraseData>();
+			CreateMap<IAccountsService_SearchForPlayersByPhraseRes, IAccounts_SearchForPlayersByPhraseRes>();
 		}
 	}
 }
